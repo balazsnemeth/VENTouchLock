@@ -65,7 +65,7 @@ static const NSInteger VENTouchLockViewControllerPasscodeLength = 4;
     self.invisiblePasscodeField.secureTextEntry = YES;
     self.invisiblePasscodeField.delegate = self;
     [self.invisiblePasscodeField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-    [self.passcodeView addSubview:self.invisiblePasscodeField];
+    [self.view addSubview:self.invisiblePasscodeField];
 }
 
 - (void)configureNavigationItems
