@@ -1,6 +1,7 @@
 VENTouchLock
 =============
-[![Build Status](https://travis-ci.org/venmo/VENTouchLock.svg?branch=master)](https://travis-ci.org/venmo/VENTouchLock)
+
+This contains several memory fixes (like the ViewControllers are released as expected), and the textFields is fix on iOS9.3 as well. 
 
 VENTouchLock secures your app by requiring a Touch ID fingerprint scan or passcode to gain access when the app is launched cold or from the background. It is used in the [official Venmo app](https://itunes.apple.com/us/app/venmo/id351727428?mt=8).
 
