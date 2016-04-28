@@ -8,7 +8,7 @@ static const NSInteger VENTouchLockViewControllerPasscodeLength = 4;
 
 @interface VENTouchLockPasscodeViewController () <UITextFieldDelegate>
 
-@property (strong, nonatomic) UITextField *invisiblePasscodeField;
+@property (weak, nonatomic) UITextField *invisiblePasscodeField;
 @property (assign, nonatomic) BOOL shouldIgnoreTextFieldDelegateCalls;
 
 @end
@@ -36,9 +36,9 @@ static const NSInteger VENTouchLockViewControllerPasscodeLength = 4;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
 
     self.view.backgroundColor = [self.touchLock appearance].passcodeViewControllerBackgroundColor;
-    [self configureInvisiblePasscodeField];
     [self configureNavigationItems];
     [self configurePasscodeView];
+    [self configureInvisiblePasscodeField];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -59,12 +59,13 @@ static const NSInteger VENTouchLockViewControllerPasscodeLength = 4;
 
 - (void)configureInvisiblePasscodeField
 {
-    self.invisiblePasscodeField = [[UITextField alloc] init];
+    UITextField *field = [[UITextField alloc] initWithFrame:CGRectMake(1000, 0, 10, 10)];
+    self.invisiblePasscodeField = field;
     self.invisiblePasscodeField.keyboardType = UIKeyboardTypeNumberPad;
     self.invisiblePasscodeField.secureTextEntry = YES;
     self.invisiblePasscodeField.delegate = self;
     [self.invisiblePasscodeField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-    [self.view addSubview:self.invisiblePasscodeField];
+    [self.passcodeView addSubview:self.invisiblePasscodeField];
 }
 
 - (void)configureNavigationItems
